@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask Saad AI | Inner Laboratory</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --main-blue: #7289da; --gold: #f1c40f; --dark-bg: #0f0f13; --card-bg: #1c1c21; --green: #2ecc71; }
+        body { background-color: var(--dark-bg); color: white; font-family: 'Poppins', sans-serif; margin: 0; padding: 20px; }
+        .container { max-width: 850px; margin: auto; }
+        header { text-align: center; padding: 20px 0; }
+        .badge { background: var(--gold); color: black; padding: 5px 15px; border-radius: 50px; font-size: 12px; font-weight: bold; text-transform: uppercase; }
+        
+        .hero-card { background: var(--card-bg); padding: 30px; border-radius: 24px; border: 1px solid rgba(114, 137, 218, 0.3); margin-bottom: 30px; }
+        .charity-note { background: rgba(241, 196, 15, 0.1); border: 2px solid var(--gold); padding: 15px; border-radius: 12px; font-size: 15px; margin-bottom: 20px; text-align: center; font-weight: 600; }
+        
+        input, textarea { width: 100%; padding: 15px; margin: 10px 0; border-radius: 10px; border: 1px solid #333; background: #25252b; color: white; box-sizing: border-box; font-family: 'Poppins'; }
+        .submit-btn { width: 100%; background: var(--main-blue); color: white; padding: 18px; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 18px; transition: 0.3s; }
+        .submit-btn:hover { background: #5b6eae; transform: translateY(-2px); }
+
+        .status-board { background: #16161d; padding: 25px; border-radius: 18px; border: 1px solid #333; }
+        .status-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #2a2a2a; }
+        .status-tag { padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: bold; }
+        .working { background: rgba(241, 196, 15, 0.2); color: var(--gold); }
+        .manual-link-box { background: #25252b; padding: 12px; border-radius: 10px; color: #5865F2; font-family: monospace; margin: 10px 0; display: inline-block; border: 1px solid #333; }
+
+        .guide-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 30px; }
+        @media (min-width: 600px) { .guide-grid { grid-template-columns: 1fr 1fr; } }
+        .guide-box { background: #16161d; padding: 20px; border-radius: 18px; border-left: 4px solid var(--gold); }
+        footer { text-align: center; padding: 40px; font-size: 11px; color: #444; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <span class="badge">Inner Laboratory</span>
+            <h1 style="margin:10px 0;">Ask Saad AI Lab</h1>
+        </header>
+
+        <div class="hero-card">
+            <div class="charity-note">
+                ⚡ MINIMUM DONATION: 30 ROBUX TO CREATE AVATAR ⚡<br>
+                <span style="font-weight:400; font-size:13px; color:#ccc;">(Covers Laboratory custom design & charity support)</span>
+            </div>
+            
+            <input type="text" id="user" placeholder="Roblox Username">
+            <input type="number" id="robux" placeholder="Donation Amount (Minimum 30)">
+            <textarea id="idea" rows="3" placeholder="One Piece Avatar Theme (e.g., Luffy, Zoro, Mammoth or Dark style)"></textarea>
+            <button type="button" class="submit-btn" onclick="sendToDiscord()">Submit Request</button>
+        </div>
+
+        <div class="status-board">
+            <h3 style="margin-top:0; color:var(--gold)">🛰️ Live Project Tracker</h3>
+            <p style="font-size:14px; color:#ccc; margin-bottom:5px;">To chat and check progress, write this link on Chrome:</p>
+            <div class="manual-link-box">https://discord.gg/d9SyFDgBv</div>
+            
+            <div style="margin-top:20px;">
+                <div class="status-item">
+                    <span style="color:var(--gold); font-weight:bold;">🏴‍☠️ CURRENT PROJECT: One Piece Era</span>
+                    <span class="status-tag working">ACTIVE</span>
+                </div>
+                <div class="status-item">
+                    <span>Next Pirate in Queue:</span>
+                    <span class="status-tag" style="background:rgba(46, 204, 113, 0.2); color:#2ecc71;">MIN 30 ROBUX</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="guide-grid">
+            <div class="guide-box">
+                <h3 style="color:var(--gold); margin-top:0;">🍖 Custom Avatars</h3>
+                <p>Top-tier One Piece style designs. <br> 
+                <b>Price:</b> 30 Robux minimum donation. <br>
+                <i>All proceeds go to charity.</i></p>
+            </div>
+            <div class="guide-box">
+                <h3 style="color:var(--gold); margin-top:0;">💎 Pro Trading Tip</h3>
+                <p><b>HOLD</b> your Mammoth and Dark fruits! The value will skyrocket soon—don't trade them for low offers!</p>
+            </div>
+        </div>
+
+        <footer>&copy; 2026 Ask Saad AI | 100% Charity Mission</footer>
+    </div>
+
+    <script>
+        async function sendToDiscord() {
+            const webhookURL = "https://discord.com/api/webhooks/1492000825399054346/tytRTm17N8j7-j7hq85GmlcwQVK67WYwUXouRecJFiRiQc0xIz5ppveuy7vpdlDCLMxG";
+            const name = document.getElementById('user').value;
+            const rbx = document.getElementById('robux').value;
+            const design = document.getElementById('idea').value;
+
+            if(!name || !rbx || !design) {
+                alert("Boss, please fill in all details!");
+                return;
+            }
+            
+            if(rbx < 30) {
+                alert("The minimum donation is 30 Robux to create an Avatar!");
+                return;
+            }
+
+            const payload = {
+                username: "Ask Saad AI Assistant",
+                embeds: [{
+                    title: "🏮 NEW AVATAR ORDER",
+                    color: 15844367,
+                    fields: [
+                        { name: "👤 Customer", value: name, inline: true },
+                        { name: "💰 Donation", value: rbx + " Robux", inline: true },
+                        { name: "🎨 Theme", value: design }
+                    ],
+                    timestamp: new Date()
+                }]
+            };
+
+            try {
+                const res = await fetch(webhookURL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                if(res.ok) { alert("Order Sent! Type the link into Chrome to see your progress."); }
+            } catch (e) { alert("Connection Error!"); }
+        }
+    </script>
+</body>
+</html>
